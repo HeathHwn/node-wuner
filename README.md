@@ -11,6 +11,53 @@ npm i node-wuner -g
 node-wuner
 ```
 
+## 用户交互
+
+- projectName
+
+    > 项目名称
+
+- description
+
+    > 项目描述
+
+- author
+
+    > 作者
+
+- license
+
+    > 许可证
+
+- deviceType
+
+    > 设备类型
+    
+    可选项
+    
+    - PC
+    - Mobile
+
+- cssPreprocessors
+
+    > css 预处理
+    
+    可选项
+    
+    - less
+    - scss
+    - css
+    
+- autoInstall
+
+    > 创建项目后，是否要执行插件安装
+    
+    可选项
+    
+    - Npm
+    - Yarn
+    - No, I will handle that myself
+
 ## 脚手架目录结构
 
 ```text
