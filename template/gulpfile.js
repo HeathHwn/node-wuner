@@ -4,14 +4,6 @@ const path = require('path')
 const { src, dest, series, parallel, watch } = require('gulp')
 const loadPlugins = require('gulp-load-plugins')
 const plugins = loadPlugins()
-// const sass = require('gulp-sass')
-// const cleanCss = require('gulp-clean-css')
-// const babel = require('gulp-babel')
-// const uglify = require('gulp-uglify')
-// const rename = require('gulp-rename')
-// const swig = require('gulp-swig')
-// const htmlmin = require('gulp-htmlmin')
-// const imagemin = require('gulp-imagemin')
 
 const cwd = process.cwd()
 
@@ -46,23 +38,19 @@ const style = () => {
         <% if(cssPreprocessors==='scss'){ %>.pipe(plugins.sass({ outputStyle: 'expanded' }))<%
         }else if(cssPreprocessors==='less') { %>.pipe(plugins.less())<%
         }%>
-        // .pipe(plugins.cleanCss())
-        // .pipe(plugins.rename({extname: '.min.css'}))
+        <% if(deviceType==='Mobile'){%>.pipe(plugins.px2rem())<%}%>
         .pipe(dest(config.build.temp))
 }
 
 const script = () => {
     return src(config.build.paths.scripts, { base: config.build.src, cwd: config.build.src })
         .pipe(plugins.babel({ presets: [require('@babel/preset-env')] }))
-        // .pipe(plugins.uglify())
-        // .pipe(plugins.rename({extname: '.min.js'}))
         .pipe(dest(config.build.temp))
 }
 
 const page = () => {
     return src(config.build.paths.pages, { base: config.build.src, cwd: config.build.src })
         .pipe(plugins.swig({ data: config.data, defaults: { cache: false } }))
-        // .pipe(plugins.htmlmin({ conservativeCollapse: true, collapseWhitespace: true, minifyCSS: true, minifyJS: true }))
         .pipe(dest(config.build.temp))
 }
 
